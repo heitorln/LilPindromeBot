@@ -16,11 +16,36 @@ client.once('ready', () => {
     });
 })
 
-//protecc
 client.on('message', (message) => {
-    //message.reply('oi');
+    
+    //mute
+    if (message.content.startsWith(`/shiu`)) {
+
+        let member = message.mentions.members.first();
+
+        if (member){
+            message.member.setMute(true);
+            message.reply(`${member} foi mutado, corno`)
+        } else {
+            message.reply('Não achei esse parça');
+        }
+    }
+    
+    //unmute
+    if (message.content.startsWith(`/fala`)) {
+
+        let member = message.mentions.members.first();
+
+        if (member){
+            message.member.setMute(false);
+            message.reply(`${member} pode falar de novo`)
+        } else {
+            message.reply('Não achei esse parça');
+        }
+    }
+    
+    //protecc
     if (message.content.startsWith(`/protecc`)){
-        
         if (xNicoON) {
             xNicoON = false;
             message.reply('O servidor não está mais protegido');
@@ -40,34 +65,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             if(newUserChannel !== undefined) {
                 newMember.setVoiceChannel(null);
             }    
-        }
-    }
-});
-
-client.on('message', (message) => {
-    if (message.content.startsWith(`${prefix}shiu`)) {
-
-        let member = message.mentions.members.first();
-
-        if (member){
-            message.member.setMute(true);
-            message.reply(`${member} foi mutado, corno`)
-        } else {
-            message.reply('Não achei esse parça');
-        }
-    }
-});
-
-client.on('message', (message) => {
-    if (message.content.startsWith(`${prefix}fala`)) {
-
-        let member = message.mentions.members.first();
-
-        if (member){
-            message.member.setMute(false);
-            message.reply(`${member} pode falar de novo`)
-        } else {
-            message.reply('Não achei esse parça');
         }
     }
 });
