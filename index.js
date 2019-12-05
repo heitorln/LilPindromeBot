@@ -19,7 +19,7 @@ client.once('ready', () => {
 //protecc
 client.on('message', (message) => {
     //message.reply('oi');
-    if (message.content.startsWith(`${prefix}protecc`)){
+    if (message.content.startsWith(`/protecc`)){
         
         if (xNicoON) {
             xNicoON = false;
