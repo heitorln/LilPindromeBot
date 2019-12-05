@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = require("./config.json");
 const token = process.env.JORGE;
-var nico = 303707892824014848;
+var nico = 362680104133984257;
 //362680104133984257;
 var xNicoON = false;
 
