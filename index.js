@@ -85,7 +85,7 @@ client.on('message', (message) => {
                 language: 'pt-BR' 
             });
 
-            message.reply(check.body);
+            console.log(check.body);
         }
     }
 });
