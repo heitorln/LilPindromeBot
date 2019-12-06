@@ -2,7 +2,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = require("./config.json");
 const token = process.env.JORGE;
 var nico = 362680104133984257;
 //362680104133984257;
@@ -46,12 +45,16 @@ client.on('message', (message) => {
     
     //protecc
     if (message.content.startsWith(`/protecc`)){
-        if (xNicoON) {
-            xNicoON = false;
-            message.reply('O servidor não está mais protegido');
+        if (message.member.id != nico){
+            if (xNicoON) {
+                xNicoON = false;
+                message.reply('O servidor não está mais protegido');
+            } else {
+                xNicoON = true;
+                message.reply('O servidor está protegido contra Nicolau');
+            }
         } else {
-            xNicoON = true;
-            message.reply('O servidor está protegido contra Nicolau');
+            message.reply('Você não possui tal poder, Nicholas');       
         }
     }
 });
