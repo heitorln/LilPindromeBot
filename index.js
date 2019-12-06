@@ -1,8 +1,16 @@
-const dotenv = require('dotenv');
-dotenv.config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = process.env.JORGE;
+
+const LanguageToolApi = require('language-grammar-api');
+ 
+const options = {
+  endpoint: 'https://languagetool.org/api/v2'
+};
+ 
+const languageToolClient = new LanguageToolApi(options);
+
+var grammarON = false;
 var nico = 362680104133984257;
 //362680104133984257;
 var xNicoON = false;
@@ -43,7 +51,7 @@ client.on('message', (message) => {
         }
     }
     
-    //protecc
+    //protecc ON/OFF
     if (message.content.startsWith(`/protecc`)){
         if (message.member.id != nico){
             if (xNicoON) {
@@ -54,7 +62,30 @@ client.on('message', (message) => {
                 message.reply('O servidor está protegido contra Nicolau');
             }
         } else {
-            message.reply('Você não possui tal poder, Nicholas');       
+            message.reply('Você não possui tal poder, Nicholas');
+        }
+    }
+
+    //grammar check ON/OFF
+    if (message.content.startsWith(`/tuiga`)) {
+        if (grammarON) {
+            grammarON = false;
+            message.reply('O servidor voltou ao normal');
+        } else {
+            grammarON = true;
+            message.reply('O servidor agora é chato com gramática');
+        }
+    }
+
+    //grammar check
+    if (!message.content.startsWith(`/`)){
+        if (grammarON){
+            let check = await languageToolClient.check({
+                text: message.content,
+                language: 'pt-BR' 
+            });
+
+            message.reply(check.body);
         }
     }
 });
