@@ -80,12 +80,12 @@ client.on('message', (message) => {
     //grammar check
     if (!message.content.startsWith(`/`)){
         if (grammarON){
-            let check = await languageToolClient.check({
+            const check = await languageToolClient.check({
                 text: message.content,
                 language: 'pt-BR' 
             });
 
-            message.reply(check.body);
+            //message.reply(check.body);
         }
     }
 });
