@@ -38,6 +38,15 @@ client.once('ready', () => {
 
 client.on('message', (message) => {
     
+    //help
+    if (message.content.startsWith(`/ajuda`)) {
+        message.reply('Lista de Comandos:\n
+                      /shiu @membro -> muta o membro\n
+                      /fala @membro -> desmuta o membro\n
+                      /protecc -> liga e desliga proteção contra o Nicolas (Nicolas não pode usar esse comando)\n
+                      /tuiga -> liga e desliga correções gramaticais UTILIZAR COM MODERAÇÃO, PODE CAUSAR BLOCK DE IP PELA API\n
+                      É isso, divirta-se e lave seu pênis')
+    }
     //mute
     if (message.content.startsWith(`/shiu`)) {
 
