@@ -5,14 +5,30 @@ const token = process.env.JORGE;
 const LanguageToolApi = require('language-grammar-api');
  
 const options = {
-  endpoint: 'https://languagetool.org/api/v2'
+    endpoint: 'https://languagetool.org/api/v2'
 };
  
 const languageToolClient = new LanguageToolApi(options);
 
+async function grammarCheck(message){
+    try {
+        let check = await languageToolClient.check({
+            text: message, 
+            language: 'pt-BR' 
+        });
+        console.log('####')
+        console.log({check});
+        return check;
+    } catch (error) {
+        throw error;
+    }
+    
+    
+   
+}
+
 var grammarON = false;
 var nico = 362680104133984257;
-//362680104133984257;
 var xNicoON = false;
 
 client.once('ready', () => {
@@ -80,12 +96,15 @@ client.on('message', (message) => {
     //grammar check
     if (!message.content.startsWith(`/`)){
         if (grammarON){
-            let check = languageToolClient.check({
-                text: message.content,
-                language: 'pt-BR' 
-            });
-
-            console.log(check.body);
+            if (message.member.id != 651470029505953811){
+                grammarCheck(message.content).then(msg => {
+                        //message.channel.send(msg);
+                    msg.matches.forEach(element =>{
+                        message.reply(element.message);
+                    });
+                
+                }).catch(error => console.log(error));
+            }
         }
     }
 });
