@@ -16,15 +16,12 @@ async function grammarCheck(message){
             text: message, 
             language: 'pt-BR' 
         });
-        console.log('####')
-        console.log({check});
+        //console.log('####')
+        //console.log({check});
         return check;
     } catch (error) {
         throw error;
     }
-    
-    
-   
 }
 
 var grammarON = false;
