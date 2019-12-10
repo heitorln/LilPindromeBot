@@ -40,7 +40,7 @@ client.on('ready', () => {
 });
 
 client.on('message', (message) => {
-    const args = message.content.split(' ').shift();
+    const args = message.content.slice(1).split(/ +/);
 
     //help
     if (message.content.startsWith(`/ajuda`)) {
