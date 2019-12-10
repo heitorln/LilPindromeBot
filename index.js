@@ -34,13 +34,14 @@ client.on('ready', () => {
     client.guilds.forEach(element => {
         console.log(element.name)
     });
-    client.user.setPresence({ game: { name: 'JEEJ' }, status: 'online' })
+    client.user.setPresence({ game: { name: 'JEEJ', type: 'WATCHING' }, status: 'online' })
         .then()
         .catch(console.error);
 });
 
 client.on('message', (message) => {
-    const args = message.content.split(' ');
+    const args = message.content.split(' ').shift();
+
     //help
     if (message.content.startsWith(`/ajuda`)) {
         message.reply('Lista de Comandos:\n/shiu @membro -> muta o membro\n/fala @membro -> desmuta o membro\n/protecc -> liga e desliga proteção contra o Nicolas (Nicolas não pode usar esse comando)\n/tuiga -> liga e desliga correções gramaticais UTILIZAR COM MODERAÇÃO, PODE CAUSAR BLOCK DE IP PELA API\nÉ isso, divirta-se e lave seu pênis');
@@ -114,7 +115,7 @@ client.on('message', (message) => {
     }
 
     if (message.content.startsWith(`/jooj`)){
-        client.user.setPresence({ game: { name: args.join(' ') }, status: 'online' })
+        client.user.setPresence({ game: { name: args.join(' '), type: 'WATCHING' }, status: 'online' })
         .then()
         .catch(console.error);
     }
