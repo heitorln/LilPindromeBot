@@ -28,12 +28,15 @@ var grammarON = false;
 var nico = 362680104133984257;
 var xNicoON = false;
 
-client.once('ready', () => {
+client.on('ready', () => {
     console.log('Bora!');
     console.log('Servers:')
     client.guilds.forEach(element => {
         console.log(element.name)
     });
+    client.user.setPresence({ game: { name: 'JEEJ' }, status: 'online' })
+        .then()
+        .catch(console.error);
 })
 
 client.on('message', (message) => {
