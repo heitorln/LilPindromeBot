@@ -40,7 +40,7 @@ client.on('ready', () => {
 });
 
 client.on('message', (message) => {
-    const args = message.content.slice(1).split(/ +/);
+    const args = message.content.split(' ').slice(1);
 
     //help
     if (message.content.startsWith(`/ajuda`)) {
@@ -114,7 +114,7 @@ client.on('message', (message) => {
         }
     }
 
-    if (message.content.startsWith(`/jooj`)){
+    if (message.content.startsWith(`/trocar`)){
         client.user.setPresence({ game: { name: args.join(' '), type: 'WATCHING' }, status: 'online' })
         .then()
         .catch(console.error);
